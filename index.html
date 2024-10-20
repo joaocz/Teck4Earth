@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tech4Earth</title>
+        <link rel="stylesheet" href="static/index.css">
+        <style>
+            /* Estilos básicos */
+            body {
+                font-family:'Gill Sans';
+                margin: 0;
+                padding: 0;
+                background-color: #74ff975d;
+            }
+           /* Botão de login na página */
+           .login-btn {
+                padding: 10px 20px;
+                background-color: #136432;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+            }
+
+            /* Estilos do painel (modal) */
+            .modal {
+                display: none; /* Painel inicialmente escondido */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro translúcido */
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Conteúdo do painel */
+            .modal-content {
+                background-color: white;
+                padding: 40px; /* Aumenta o padding para ficar mais parecido */
+                border-radius: 10px; /* Bordas arredondadas */
+                width: 90%; /* Largura percentual para ocupar mais espaço */
+                max-width: 400px; /* Largura máxima */
+                margin: auto; /* Centraliza horizontalmente */
+                text-align: center;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra leve */
+            }
+            .button-container {
+                display: flex; /* Alinha os botões em linha */
+                justify-content: center; /* Espaça os botões */
+                margin-top: 20px; /* Espaço acima dos botões */
+                gap: 10px;
+            }
+            /* Botão de fechar */
+            .close-btn {
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                padding: 10px;
+                Font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px; /* Bordas arredondadas */
+                flex: 1; /* Permite que o botão ocupe espaço proporcionalmente */
+            }
+            /* Campo de entrada */
+            .login-input {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border-radius: 5px;
+                border: 1px solid #ccc; /* Ajusta a cor da borda */
+                font-size: 16px; /* Tamanho da fonte */
+            }
+            .modal-content button[type="submit"] {
+                width: 100%; /* O botão ocupa 100% do espaço do contêiner */
+                padding: 10px;
+                background-color: #007BFF; /* Cor do botão */
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                Font-size: 16px;
+                flex: 1; /* Permite que o botão ocupe espaço proporcionalmente */
+        }
+            .modal-content button[type="submit"]:hover {
+                background-color: #0056b3; /* Cor ao passar o mouse */
+            }
+            header {
+                font-family:'Lucida Sans Regular';
+                background-color: #9af197;
+                color: rgb(0, 0, 0);
+                text-align: center;
+                padding: 1rem;
+                
+            }
+            nav {
+                background-color: #00000082;
+                padding: 1rem;
+                text-align: center;
+            }
+            nav a {
+                color: rgb(0, 44, 6);
+                margin: 0 15px;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            section {
+                padding: 2rem;
+            }
+            footer {
+                background-color: #000000; /* Fundo preto */
+                color: #ffffff; /* Texto branco */
+                text-align: center;
+                padding: 20px; /* Espaçamento interno para ficar mais espaçoso */
+                width: 100%; /* Ocupa 100% da largura */
+                margin-top: 50px; /* Espaço antes do rodapé para separar do conteúdo */
+}
+            
+
+        /* Estilo para o botão */
+        .btn {
+            padding: 15px 30px;
+            background-color: #136432;
+            color: white;
+            Border: none; /* Remove borda padrão */
+            border-radius: 5px; /* Bordas arredondadas */
+            font-size: 16px; /* Tamanho da fonte */
+            font-weight: bold; /* Negrito */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            transition: background-color 0.3s;
+            margin-top: 45px; /* Transição suave */
+        }
+    
+        </style>
+    </head>
+
+    <body>
+
+         <!-- Botão de Login -->
+         <button class="login-btn" onclick="abrirModal()">Login</button>
+
+         <!-- Painel Flutuante (Modal) -->
+         <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h2>Login</h2>
+                <input type="text" class="login-input" placeholder="Usuário" required>
+                <input type="password" class="login-input" placeholder="Senha" required>
+                <div class="button-container">
+                    <button type="submit" id="entrar-btn" >Entrar</button>
+                    <button class="close-btn" onclick="fecharModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <h2>PLANTANDO O FUTURO</h2>
+        </header>
+    
+        <nav>
+            <a href="#home">Apresentação</a>
+        </nav>
+        
+        <section>
+            <h3><center><button class="btn" onclick="abrirNovaPagina()">APRENDA COMO JOGAR</button></center></h3>
+        </section>
+        
+        <section id="help">
+            <h3>Aoa avaliadores</h3>
+            <p>O projeto "Plantando o Futuro" é uma iniciativa do grupo "EletricMinds", participantes do evento "Hackathon" da Fundação Estudar. Em meio a uma sociedade cada vez mais globalizada, já é de conhecimento plural e abrangente que, eminentemente, a raça humana está sendo ameaçada pelas prórpias modificações indevidas do espaço geográfico e, com elas, a intensificação climática. Com este problema em mente, tendo como base o objetivo de desenvolvimento sustentável da ONU 13 "Ação contra a mudança global do clima" este site busca a arrecadação de "Ações Semente", isto é, garante pontuação específica a aqueles que comprovarem ações indivíduais no combate do clima global, diferença que, de semente em semente, criará um novo pulmão do mundo, que, dessa vez, se auto-mantém.</p>
+            <p>O site foi desenvolvidp com um viez de ser um prototipo, portano, existem funções incompletas. Ao clicar no botão "aprenda a jogar", vocês serão direcionados à uma pagina com o tutorial e abertura do projeto. Para acessar o porjeto, clique em "Login" e em "Entrar" (não é necessario digitar um login ou senha) e vocês serão direcionados para a pagina principal</p>
+            <p>O projeto inteiro foi desenvolvido em cima de uma lingtuagem que tivemos que aprender do zero, então esperamos que o projeto agrade-os. Com toda sinceridade posso dizer que demos nosso máximo, obrigado pela atenção!</p>
+        </section>
+
+        <section id="texto1">
+            <h3>Objetivo</h3>
+            <p> A iniciativa visa incentivar práticas sustentáveis aos usuários do site, cooperando assim com a realização do objetivo de desenvolvimento sustentável da ONU 13,”Ação contra a mudança global do clima”, e englobando também o cumprimento das ODS 11 (cidades e comunidades sustentáveis), 12 (consumo e produção responsável) e 15 (vida terrestre) ,  através de recompensas concedidas dentro da plataforma desenvolvida se o usuário comprovar a realização de ações sustentáveis.
+            </p>
+        </section>
+
+        <section id="texto2">
+            <h3>Funciopnamento</h3>
+            <p> O usuário poderá escolher realizar uma das práticas sustentáveis, “Ações Sementes” que serão explicadas no site, são elas:
+                <p>- Reduzir o uso de plástico;</p>
+                <p>- Reduzir o uso de plástico;</p>
+                <p>- Reciclar;</p>
+                <p>- Economizar água;</p>
+                <p>- Economizar energia;</p>
+                <p>- Transporte sustentável;</p>
+                <p>- Plantar árvores e jardins;</p>
+                <p>- Plantar árvores e jardins;</p>
+                <p>- Comprar de forma consciente.</p>
+                <p>- Conscientização da comunidade</p>
+                <p>Onde cada um dos tipos de forma de prática sustentável valerá uma quantidade específica de pontos. Por exemplo, Plantar árvores e jardins concedem 7.000 pontos, enquanto Reduzir o uso de plástico valem 5.000.</p>
+                <p>Dentro do site, o navegante terá acesso a um jogo no qual o personagem terá habilidades padrões, que poderão ser aumentadas com a utilização dos pontos, além de conseguir ter acesso a skins personalizadas também utilizando os pontos conquistados. Além disso, o jogo deve ter uma dificuldade elevada para que estimule os jogadores a aumentarem suas skills base.</p>
+                <p>Os pontos em questão só serão concedidos após o usuário comprovar através de uma postagem, a sua ação responsável. Deste modo, o usuário não só comprovará a sua atitude de sustentabilidade, como também incentivará outros utilizadores do site a praticarem ações de sustentabilidade.</p>
+                <p>Dentro do site, o usuário terá acesso às formas como cada uma das ações sustentáveis podem ser  executadas no cotidiano. Abaixo, temos exemplificada a descrição das formas de praticar as Ações Sustentáveis:</p>
+            </p>
+        </section>
+    
+        <section id="texto3">
+            <h3>Reduzir o uso de plastico</h3>
+            <p>- Utilize sacolas reutilizáveis;</p>
+            <p>- Evite produtos com embalagens plásticas e opte por itens de papel;</p>
+            <p>- Utilize canudinhos e copos de papel;</p>
+            <p>- Evite produtos descartáveis como pratos ou copos descartáveis.</p>
+            <p></p>
+
+        </section>
+    
+        <section id="texto4">
+            <h3>Reciclar</h3>
+            <p>- Separe os materiais recicláveis (papel, plástico, vidro, metal) e destine-os corretamente em pontos de reciclagem.</p>
+            <p>- Para materiais orgânicos crie uma composteira para transformar restos de comida em adubo para plantas.</p>
+            <p>- Seja criativo e explore os novos usos para os materiais que iriam ser descartados.</p>
+        </section>
+
+        <section id="texto5">
+            <h3>Economize água</h3>
+            <p>- Colete água da chuva, ao invés da água da torneira;</p>
+            <p>- Diminua o seu tempo de banho;</p>
+            <p>- Utilize vassoura, ao invés de mangueiras, quando limpar áreas extensas.</p>
+        </section>
+
+        <section id="texto6">
+            <h3>Economia de energia</h3>
+            <p>- Desligue luzes e aparelhos eletrônicos quando não estiverem em uso</p>
+            <p>- Prefira utilizar lâmpadas LED, que consomem menos energia.</p>
+        </section>
+
+        <section id="texto7">
+            <h3>Transporte sustentavel</h3>
+            <p>- Opte por caminhar, andar de bicicleta ou usar transporte público em vez de carro.</p>
+        </section>
+
+        <section id="texto8">
+            <h3>Plantar arvores</h3>
+            <p>- Cultive plantas nativas ou faça uma horta em casa para melhorar a biodiversidade;</p>
+            <p>- Plante mudas de árvores em praças ou parques e acompanhe o seu desenvolvimento.</p>
+        </section>
+
+        <section id="texto9">
+            <h3>RECICLAR</h3>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </section>
+
+        <section id="texto4">
+            <h3>Comprar de forma consciente</h3>
+            <p>- Escolha produtos de empresas sustentáveis;</p>
+            <p>- Apoie a economia local e reduza a pegada de carbono ao comprar produtos produzidos na sua região;</p>
+            <p>- Invista em itens de qualidade que durem mais, ao invés de produtos descartáveis;</p>
+            <p>- Visite brechós ou compre produtos usados, que podem ser mais sustentáveis e econômicos.</p>
+        </section>
+     
+        <footer>
+            <p>&copy; 2024 Plantando o Futuro. Todos os direitos reservados.</p>
+        </footer>
+
+        <script>
+            function abrirNovaPagina() {
+                window.location.href = "file:///C:/Users/Desktop/Desktop/Projetos/HTML%20SITE/Frontend/Index2.html";
+            }
+        </script>
+
+         <script>
+            // Função para abrir o modal
+            function abrirModal() {
+                document.getElementById("loginModal").style.display = "flex";
+            }
+
+            // Função para fechar o modal
+            function fecharModal() {
+                document.getElementById("loginModal").style.display = "none";
+            }
+            document.getElementById("entrar-btn").onclick = function() {
+                // Redireciona para a nova página
+                window.location.href = "file:///C:/Users/Desktop/Desktop/Projetos/HTML%20SITE/Frontend/desafios.html"; // Altere para o caminho desejado
+};
+        </script>
+    
+    </body>
+    </html>

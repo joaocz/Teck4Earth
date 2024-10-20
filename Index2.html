@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family:'Gill Sans';
+            margin: 0;
+            padding: 0;
+            background-color: #74ff975d;
+        }
+        header {
+            font-family:'Lucida Sans Regular';
+            background-color: #9af197;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 1rem;
+            font-size: large;
+        }
+        nav {
+            background-color: #00000082;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: rgb(0, 44, 6);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        section {
+            padding: 2rem;
+        }
+        footer {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 1rem;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            font-family: Arial, sans-serif;
+        }
+        .btn2 {
+            padding: 10px 20px; /* Igual ao botão de login */
+            background-color: #136432; /* Cor igual ao botão de login */
+            color: white; /* Cor do texto */
+            border: none; /* Remove borda padrão */
+            border-radius: 5px; /* Bordas arredondadas */
+            font-size: 16px; /* Tamanho da fonte */
+            font-weight: bold; /* Negrito */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            transition: background-color 0.3s;
+            margin: 20px 0; /* 20px de margem em cima e embaixo, 0 nas laterais */
+        }
+
+        .btn2:hover {
+            background-color: #0a4c26; /* Cor ao passar o mouse */
+        }
+    </style>  
+ </head>
+
+<body>
+
+    <header>
+        <h1>PLANTANDO O FUTURO</h1>
+    </header>
+
+    <nav>
+        <a href="#about">Tutorial</a>
+    </nav>
+
+    <section>
+        <center><iframe width="560" height="315" src="https://www.youtube.com/embed/U8n2M0ikoIs?si=nxyZ1ZoCbHXjg-RE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
+    </section>
+
+    <section> <!-- Adicionando um estilo ao contêiner -->
+        <h2>
+            <button class="btn2" onclick="abrirNovaPagina()">VOLTAR</button>
+        </h2>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Plantando o Futuro. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função que abre uma nova aba com a URL especificada
+        function abrirNovaPagina() {
+            window.location.href = "file:///C:/Users/Desktop/Desktop/Projetos/HTML%20SITE/Frontend/index.html";
+        }
+    </script>
+    
+</body>
+</html>

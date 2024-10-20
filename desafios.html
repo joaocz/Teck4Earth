@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios Sustentáveis</title>
+    <style>
+        body {
+            font-family: 'Gill Sans';
+            margin: 0;
+            padding: 0;
+            background-color: #74ff975d;
+        }
+        header {
+            font-family: 'Lucida Sans Regular';
+            background-color: #9af197;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 1rem;
+        }
+        nav {
+            background-color: #00000082;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: rgb(0, 44, 6);
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .catalog-wrapper {
+            width: 100vw;
+            overflow: auto;
+            overflow-y: hidden;
+            padding: 20px;
+        }
+        .catalog-container {
+            display: flex;
+            width: calc(250px * 8 + 250px * 7);
+            transition: transform 0.3s ease;
+            padding: 0px;
+            scroll-behavior: smooth;
+        }
+        .catalog-box {
+            width: 600px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            margin-right: 20px;
+            transition: background-color 0.3s ease;
+            background-size: cover; /* Para cobrir toda a área */
+            background-position: center; /* Centraliza a imagem */
+            color: white; /* Torna o texto branco para maior contraste */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Adiciona sombra ao texto */
+}
+.box1 {
+    background-image: url('https://tst.jus.br/documents/10157/2374827/Caminh%C3%A3o+de+Lixo+-+Vinicius+de+Melo+Ag%C3%AAncia+Bras%C3%ADlia.jpg/7d8d304e-8496-406a-61f7-48d018233b1d');
+    background-size: cover; /* Faz a imagem cobrir toda a área da caixa */
+    background-position: center; /* Centraliza a imagem */
+}
+
+.box2 {
+    background-image: url('https://www.arujareporter.com.br/wp-content/uploads/2023/03/lixo-no-mar-1024x682.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.box3 {
+    background-image: url('https://www.infoans.org/media/k2/items/cache/e49c82af83929f8b11b0b3eba0134d90_XL.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.box4 {
+    background-image: url('https://images.pexels.com/photos/1556704/pexels-photo-1556704.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.box5 {
+    background-image: url('https://media.licdn.com/dms/image/v2/C4D12AQFT77pHvjOpFw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1645029566672?e=2147483647&v=beta&t=hKSTwluqGSEyJ1Rfm0GRlp_SWqpg8yzsMyTvw8xGJOc');
+    background-size: cover;
+    background-position: center;
+}
+
+.box6 {
+    background-image: url('https://cdn.sistemawbuy.com.br/arquivos/d804ad78dae4e272ab64e7c6a15ea445/produtos/RAE3GAE2/mix-sementes-62e3f4762a2fc.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.box7 {
+    background-image: url('https://www.fundoversa.com.br/wp-content/uploads/2022/03/ShoppingLeblon2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.box8 {
+    background-image: url('https://www.youbilingue.com.br/blog/wp-content/uploads/2019/06/capa-blog-diferenciar-escola-min.png');
+    background-size: cover;
+    background-position: center;
+}
+.box9 {
+    background-image: url('https://www.appsflyer.com/wp-content/uploads/2021/10/Feature-image-917x480-2.png');
+    background-size: cover;
+    background-position: center;
+}
+.box10 {
+    background-image: url('https://img.freepik.com/fotos-premium/logotipo-do-youtube-e-design-do-player-de-video-ou-interface-do-player-de-midia-de-video_41204-11259.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.box11 {
+    background-image: url('https://jornal.usp.br/wp-content/uploads/2022/06/202205601_jogos_streaming.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+        .catalog-box:hover {
+            transform: scale(1.1);
+        }
+        
+        #text-box {
+            width: 100%; 
+            max-width: 600px;
+            background-color: white;
+            border: 2px solid black;
+            padding: 60px;
+            border-radius: 10px;
+            display: none; /* A caixa começa invisível */
+            position: fixed; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex; /* Flex para alinhar conteúdo */
+            justify-content: space-between;
+        }
+        .text-content {
+            width: 60%;
+        }
+        .image-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza a imagem */
+            justify-content: center; /* Centraliza verticalmente na área da imagem */
+            height: 100%; /* Ajusta a altura da imagem para ocupar todo o espaço disponível */
+        }
+        .image-content img {
+            max-width: 350px; /* Aumenta o tamanho da imagem */
+            border-radius: 5px;
+            margin-top: 65px; /* Espaçamento acima da imagem */
+        }
+        .close-btn {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        #button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%; 
+            color: #860f04;
+        }
+        #conclude-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: blue;
+            color: white;
+            width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn2 {
+            padding: 10px 20px; 
+            background-color: #136432; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: background-color 0.3s;
+            margin: 20px 20px; 
+        }
+        .btn2:hover {
+            background-color: #0a4c26; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>TECH4EARTH</h1>
+</header>
+
+<nav>
+    <a href="#home">Semeando o Amanhã</a>
+</nav>
+
+<div class="catalog-wrapper">
+    <div class="catalog-container">
+        <div class="catalog-box box1" onclick="showText(1)">Reciclagem</div>
+        <div class="catalog-box box2" onclick="showText(2)">Zero Plástico</div>
+        <div class="catalog-box box3" onclick="showText(3)">Salva'dágua</div>
+        <div class="catalog-box box4" onclick="showText(4)">Amigo da Enel</div>
+        <div class="catalog-box box5" onclick="showText(5)">Transporte Verde</div>
+        <div class="catalog-box box6" onclick="showText(6)">Sementes Naturais</div>
+        <div class="catalog-box box7" onclick="showText(7)">Consumo Consciente</div>
+        <div class="catalog-box box8" onclick="showText(8)">Conscientização</div>
+    </div>
+</div>
+
+<div class="catalog-wrapper">
+    <div class="catalog-container">
+        <div class="catalog-box box9" onclick="showText(1)">Nosso App</div>
+        <div class="catalog-box box10" onclick="showText(2)">Apresentação</div>
+        <div class="catalog-box box11" onclick="showText(3)">Jogo</div> 
+    </div>
+</div>
+
+<div id="text-box" style="display: none;">
+    <button class="close-btn" onclick="closeTextBox()">X</button>
+    <button id="conclude-btn" onclick="changeText(currentCatalogId)">Concluir</button>
+    <div class="text-content" id="text-content"></div>
+    <div class="image-content">
+        <img id="floating-image" src="" alt="Imagem do catálogo">
+    </div>
+</div>
+
+<section>
+    <h2>
+        <button class="btn2" onclick="abrirNovaPagina()">VOLTAR</button>
+    </h2>
+</section>
+
+<script>
+    let currentCatalogId = null; 
+
+    function showText(catalogId) {
+        currentCatalogId = catalogId; 
+        var textBox = document.getElementById('text-box');
+        var textContent = '';
+        var imageSrc = '';
+
+        switch(catalogId) {
+            case 1: 
+            textContent = 'Ao reciclar, você não só dá um novo significado à materiais que poderiam ser poluidores do meio-ambiente, mas também incentiva os outros ao seu redor a fazerem o mesmo. Seja criativo e desfrute das vantagens de ser amigo do planeta!\n\nAqui estão algumas sugestões de como fazer isso:\n- Separe os materiais recicláveis (papel, plástico, vidro, metal) e destine-os corretamente em pontos de reciclagem.\n- Seja criativo e explore os novos usos para os materiais que iriam ser descartados.\n- Para materiais orgânicos, crie uma composteira para transformar restos de comida em adubo para plantas.';
+            imageSrc = 'https://img.freepik.com/fotos-vetores-gratis/arvore_23-2148253751.jpg'; 
+                break;
+            case 2: 
+                textContent = 'Cada sacola reutilizável que você carrega é um passo a menos em direção a um oceano poluído. Ao fazer escolhas conscientes, você não apenas protege a natureza, mas também inspira outros a seguir seu exemplo.\n\nAqui estão algumas sugestões de como fazer isso:\n- Utilize sacolas reutilizáveis;\n- Evite produtos com embalagens plásticas e opte por itens de papel;\n- Utilize canudinhos e copos de papel;\n- Evite produtos descartáveis como pratos ou copos descartáveis.';
+                imageSrc = 'https://images.unsplash.com/photo-1599422070977-09c14b71d7bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHBsYXN0aWN8ZW58MHx8fHwxNjgyNTYyNzYz&ixlib=rb-4.0.3&q=80&w=1080';
+                break;
+            case 3: 
+                textContent = 'A água é um recurso natural precioso. Estima-se que somente 3% da água no planeta é doce e consumível, por isso, cada gota economizada, é um passo para um futuro mais sustentável.\n\nAqui estão algumas sugestões de como fazer isso:\n- Colete água da chuva, ao invés da água da torneira;\n- Diminua o seu tempo de banho;\n- Utilize vassoura, ao invés de mangueiras, quando limpar áreas extensas.';
+                imageSrc = 'https://images.unsplash.com/photo-1524587742304-4d8b4e17cde0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHdhdGVyfGVufDB8fHx8MTY4MjU2MTg2MQ&ixlib=rb-4.0.3&q=80&w=1080';
+                break;
+            case 4: 
+                textContent = 'Pequenas ações diárias como desligar uma lâmpada quando não utilizada, ajudam a reduzir a demanda por energia e a proteger nosso planeta para as futuras gerações.\n\nAqui estão algumas sugestões de como fazer isso:\n-Desligue luzes e aparelhos eletrônicos quando não estiverem em uso\n-Prefira utilizar lâmpadas LED, que consomem menos energia.';
+                imageSrc = 'https://example.com/amigoenel.jpg';
+                break;
+            case 5: 
+                textContent = 'Optar por um transporte mais sustentável, diminuirá a emissão de gases poluentes para a atmosfera, proporcionando melhor qualidade do ar para os seres vivos, e preservando a camada de ozônio.\n\nAqui estão algumas sugestões de como fazer isso:\n- Opte por caminhar, andar de bicicleta ou usar transporte público em vez de carro..';
+                imageSrc = 'https://example.com/transporteverde.jpg';
+                break;
+            case 6: 
+                textContent = 'As árvores não apenas fornecem sombra e beleza, mas também purificam o ar e abrigam a vida. Ao plantar, você deixa um legado verde para as próximas gerações.\n\nAqui estão algumas sugestões de como fazer isso:\n- Cultive plantas nativas ou faça uma horta em casa para melhorar a biodiversidade;\n- Plante mudas de árvores em praças ou parques e acompanhe o seu desenvolvimento.';
+                imageSrc = 'https://example.com/sementesnaturais.jpg';
+                break;
+            case 7: 
+                textContent = 'Ao escolher produtos de empresas sustentáveis, você apoia práticas que cuidam do planeta. Seu poder de compra pode ser uma ferramenta poderosa para promover mudanças positivas na indústria e inspirar outros a fazer o mesmo.\n\nAqui estão algumas sugestões de como fazer isso:\n- Escolha produtos de empresas sustentáveis;\n- Apoie a economia local e reduza a pegada de carbono ao comprar produtos produzidos na sua região;\n- Invista em itens de qualidade que durem mais, ao invés de produtos descartáveis;\n- Visite brechós ou compre produtos usados, que podem ser mais sustentáveis e econômicos.';
+                imageSrc = 'https://example.com/consumoconsciente.jpg';
+                break;
+            case 8: 
+                textContent = 'Compartilhar conhecimento sobre sustentabilidade é como espalhar sementes de mudança. Ao educar amigos e familiares, você cria uma rede de consciência e ação, inspirando todos a se unirem na luta por um mundo mais saudável e equilibrado.\n\nAqui estão algumas sugestões de como fazer isso:\n- Compartilhe informações sobre sustentabilidade com amigos e familiares;\n- Seja exemplo de como levar uma vida sustentável preservando o meio ambiente!';
+                imageSrc = 'https://example.com/conscientizacao.jpg';
+                break;
+        }
+
+        document.getElementById('text-content').innerText = textContent;
+        document.getElementById('floating-image').src = imageSrc; 
+        textBox.style.display = 'flex'; 
+    }
+
+    function closeTextBox() {
+        var textBox = document.getElementById('text-box');
+        textBox.style.display = 'none'; 
+        currentCatalogId = null; 
+    }
+
+    function changeText(catalogId) {
+        if (catalogId < 8) {
+            showText(catalogId + 1); 
+        } else {
+            closeTextBox(); 
+        }
+    }
+
+    function abrirNovaPagina() {
+        window.location.href = "file:///C:/Users/Desktop/Desktop/Projetos/HTML%20SITE/Frontend/index.html";
+    }
+</script>
+
+</body>
+</html>
